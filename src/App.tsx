@@ -54,17 +54,17 @@ export default function App() {
       <section id="workbench" className="lab-section">
         <div className="lab-grid">
           <div>
-            <span className="hero-small-label">ENGINEERING SIMULATOR // STRATA ZINC & SLATE</span>
+            <span className="hero-small-label">ROOF PITCH &amp; WIND CALCULATOR // STRATA ZINC &amp; SLATE</span>
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '2.2rem', textTransform: 'uppercase', marginBottom: '1rem', letterSpacing: '-0.02em', color: 'var(--ink-primary)' }}>
-              WIND UPLIFT & ROOF PITCH INCLINE
+              WIND UPLIFT &amp; ROOF PITCH INCLINE
             </h2>
             <p style={{ color: 'var(--ink-muted)', lineHeight: 1.6, marginBottom: '2rem' }}>
-              Real-time metallurgical and operational tolerance calculator. Direct simulation against architectural standards with zero synthetic slop.
+              Calculate standing-seam zinc pan width, concealed fastener spacing, and coastal wind-uplift resistance.
             </p>
 
             <div style={{ marginBottom: '1.5rem', background: 'var(--bg-color)', padding: '1.5rem', border: '1px solid var(--border-soft)' }}>
               <label style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--font-mono)', fontSize: '0.76rem', marginBottom: '0.75rem', fontWeight: 600 }}>
-                <span style={{ textTransform: 'uppercase' }}>SIMULATED LOAD CALIBRATION</span>
+                <span style={{ textTransform: 'uppercase' }}>ROOF PITCH &amp; WIND LOAD</span>
                 <span style={{ color: 'var(--accent-color)', fontWeight: 700 }}>{metricValue} MPH RESISTANCE</span>
               </label>
               <input
