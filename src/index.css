@@ -1,9 +1,11 @@
 :root {
-  --bg-color: #0c0d10;
-  --surface-color: #13151b;
-  --accent-color: #cbd5e1;
-  --ink-primary: #f2f4f8;
-  --border-soft: rgba(255, 255, 255, 0.12);
+  --bg-color: #f1f3f6;
+  --surface-color: #ffffff;
+  --accent-color: #334155;
+  --accent-light: #e2e8f0;
+  --ink-primary: #141a24;
+  --ink-muted: #4b5563;
+  --border-soft: rgba(20, 26, 36, 0.14);
   --font-display: 'Clash Display', sans-serif;
   --font-sans: 'Cabinet Grotesk', -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
@@ -41,10 +43,11 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 0 2.5rem;
-  background: rgba(12, 14, 18, 0.88);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-soft);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
 }
 
 .edge-brand-lockup {
@@ -54,12 +57,12 @@ body {
 }
 
 .edge-brand {
-  color: #ffffff;
+  color: var(--ink-primary);
   text-decoration: none;
   font-family: var(--font-display);
   font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-weight: 800;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -70,6 +73,7 @@ body {
   letter-spacing: 0.1em;
   border-left: 1px solid var(--border-soft);
   padding-left: 1rem;
+  font-weight: 600;
 }
 
 .edge-nav-links {
@@ -79,7 +83,7 @@ body {
 }
 
 .edge-nav-links a {
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--ink-muted);
   text-decoration: none;
   font-family: var(--font-sans);
   font-size: 0.74rem;
@@ -92,7 +96,7 @@ body {
 }
 
 .edge-nav-links a:hover {
-  color: #ffffff;
+  color: var(--ink-primary);
 }
 
 .edge-nav-links a::after {
@@ -101,7 +105,7 @@ body {
   bottom: 0;
   left: 0;
   width: 0;
-  height: 1px;
+  height: 2px;
   background: var(--accent-color);
   transition: width 0.2s ease;
 }
@@ -113,10 +117,10 @@ body {
 .edge-action-btn {
   appearance: none;
   background: var(--accent-color);
-  color: #0c0e12;
+  color: #ffffff;
   border: 1px solid var(--accent-color);
   border-radius: 0;
-  padding: 0.55rem 1.25rem;
+  padding: 0.6rem 1.4rem;
   font-family: var(--font-sans);
   font-size: 0.72rem;
   font-weight: 700;
@@ -128,24 +132,22 @@ body {
 }
 
 .edge-action-btn:hover {
-  background: #ffffff;
-  border-color: #ffffff;
-  color: #0c0e12;
+  background: var(--ink-primary);
+  border-color: var(--ink-primary);
+  color: #ffffff;
 }
 
-/* HERO SECTION (ZERO ITALIC SLOP) */
+/* HERO SECTION (ADAPTIVE LIGHT-MODE ARCHITECTURE) */
 .hero-fullbleed {
   position: relative;
   width: 100vw;
-  height: 94vh;
-  min-height: 680px;
-  overflow: hidden;
+  min-height: 88vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  color: #ffffff;
-  padding-top: 64px;
-  background: linear-gradient(180deg, var(--bg-color) 0%, #060709 100%);
+  color: var(--ink-primary);
+  padding-top: 100px;
+  background: var(--bg-color);
 }
 
 .hero-body {
@@ -154,11 +156,11 @@ body {
   max-width: 1400px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 3.5rem 3.5rem;
+  padding: 0 3.5rem 4rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  gap: 2.5rem;
+  gap: 3rem;
 }
 
 .hero-copy-stack {
@@ -168,24 +170,25 @@ body {
 .hero-small-label {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.2em;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--accent-color);
-  margin-bottom: 0.75rem;
-  font-variant-numeric: tabular-nums;
-  border-bottom: 1px solid var(--border-soft);
-  padding-bottom: 0.25rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  background: var(--accent-light);
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--border-soft);
 }
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(2.6rem, 4.6vw, 4.8rem);
-  font-weight: 800;
-  line-height: 1.0;
+  font-size: clamp(2.8rem, 5vw, 5rem);
+  font-weight: 900;
+  line-height: 0.98;
   letter-spacing: -0.03em;
   text-transform: uppercase;
-  color: #ffffff;
+  color: var(--ink-primary);
   margin-bottom: 1.25rem;
   text-wrap: balance;
 }
@@ -196,25 +199,25 @@ body {
   color: var(--accent-color);
   letter-spacing: -0.02em;
   font-size: 0.76em;
-  margin-top: 0.2rem;
+  margin-top: 0.3rem;
 }
 
 .hero-lead {
   font-family: var(--font-sans);
-  font-size: 1rem;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.82);
+  font-size: 1.05rem;
+  line-height: 1.62;
+  color: var(--ink-muted);
   max-width: 50ch;
-  margin-bottom: 2rem;
+  margin-bottom: 2.2rem;
 }
 
 .editorial-cta-btn {
   appearance: none;
   background: var(--accent-color);
-  color: #0c0e12;
+  color: #ffffff;
   border: 1px solid var(--accent-color);
   border-radius: 0;
-  padding: 0.9rem 2rem;
+  padding: 0.95rem 2.2rem;
   font-family: var(--font-sans);
   font-size: 0.78rem;
   font-weight: 700;
@@ -226,12 +229,13 @@ body {
   align-items: center;
   gap: 0.6rem;
   text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
 }
 
 .editorial-cta-btn:hover {
-  background: #ffffff;
-  border-color: #ffffff;
-  color: #0c0e12;
+  background: var(--ink-primary);
+  border-color: var(--ink-primary);
+  color: #ffffff;
   transform: translateY(-1px);
 }
 
@@ -240,13 +244,15 @@ body {
   align-items: center;
   gap: 1.5rem;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.14em;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent-color);
-  padding: 0.75rem 1.25rem;
-  background: rgba(12, 14, 18, 0.85);
+  padding: 0.85rem 1.4rem;
+  background: var(--surface-color);
   border: 1px solid var(--border-soft);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+  font-weight: 600;
 }
 
 /* INTERACTIVE LAB SECTION */
@@ -258,12 +264,13 @@ body {
 
 .lab-grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1.15fr 0.85fr;
   gap: 3.5rem;
   align-items: center;
   border: 1px solid var(--border-soft);
   background: var(--surface-color);
   padding: 3.5rem;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.03);
 }
 
 .spec-table {
@@ -277,18 +284,19 @@ body {
 }
 
 .spec-table td {
-  padding: 0.85rem 0;
-  font-size: 0.82rem;
+  padding: 0.95rem 0;
+  font-size: 0.84rem;
 }
 
 .spec-label {
   font-family: var(--font-mono);
   color: var(--accent-color);
+  font-weight: 600;
 }
 
 .spec-value {
   font-family: var(--font-mono);
   text-align: right;
-  font-weight: 600;
-  color: #ffffff;
+  font-weight: 700;
+  color: var(--ink-primary);
 }
