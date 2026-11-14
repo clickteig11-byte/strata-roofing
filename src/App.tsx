@@ -670,7 +670,7 @@ export default function App() {
               </div>
               <h3 className="anatomy-title">Heavy Solid Copper Half-Round Gutters</h3>
               <p className="anatomy-desc">
-                6-inch seamless half-round gutters formed from 20 oz copper, suspended with hand-forged solid brass roof brackets spaced every 24 inches to withstand crushing winter ice sheets and sliding snow loads.
+                Continuous 6-inch half-round gutters formed from 20 oz copper, suspended with hand-forged solid brass roof brackets spaced every 24 inches to withstand crushing winter ice sheets and sliding snow loads.
               </p>
             </div>
           </div>
