@@ -120,6 +120,7 @@ export default function App() {
   const [buildingType, setBuildingType] = useState('historic-residence');
   const [projectScope, setProjectScope] = useState('full-slate-zinc');
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [takeoffRef, setTakeoffRef] = useState('');
 
   // Accessible IDs
   const sqId = useId();
@@ -141,10 +142,10 @@ export default function App() {
   const totalDeadWeightTons = (totalDeadWeightLbs / 2000).toFixed(2);
   const deadLoadPsf = (currentGrade.weightLbsPerSq / 100).toFixed(1);
 
-  // Design roof snow load per ASCE 7-16: Ps = 0.7 * Cs * Pg
-  // Sloped roof factor Cs: drops as pitch steepens past 7/12 (30 deg)
+  // Design roof snow load per ASCE 7-16: Ps = 0.7 * Cs * Pg (flat roof factor 0.7 * slope factor Cs * ground load Pg)
+  // Sloped roof factor Cs: drops as pitch steepens past 7/12 (30 deg) due to snow shedding on smooth slate
   const slopeFactorCs = pitchAngleDeg <= 30 ? 1.0 : Math.max(0.2, 1.0 - (pitchAngleDeg - 30) / 40);
-  const designSnowLoadPsf = (groundSnowLoad * slopeFactorCs).toFixed(1);
+  const designSnowLoadPsf = (0.7 * slopeFactorCs * groundSnowLoad).toFixed(1);
   const combinedRafterPsf = (parseFloat(deadLoadPsf) + parseFloat(designSnowLoadPsf)).toFixed(1);
 
   // Total slate count: an 18"x10" slate with 3" headlap has 7.5" exposure = 75 sq. in. = 192 slates per square
@@ -158,7 +159,26 @@ export default function App() {
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const refCode = `SR-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
+    setTakeoffRef(refCode);
     setFormSubmitted(true);
+    try {
+      const payload = {
+        refCode,
+        clientName,
+        projectLocation,
+        buildingType,
+        projectScope,
+        roofSquares,
+        pitchRise,
+        slateGrade: currentGrade.grade,
+        combinedRafterPsf,
+        timestamp: new Date().toISOString()
+      };
+      localStorage.setItem(`strata_takeoff_${refCode}`, JSON.stringify(payload));
+    } catch {
+      // Local storage fallback
+    }
   };
 
   return (
@@ -681,20 +701,29 @@ export default function App() {
                 Thank you, <strong>{clientName || 'Project Lead'}</strong>. Your inquiry for <strong>{projectLocation || 'your property'}</strong> has been assigned to our master slating director. We will review your architectural scope and contact you within 24 hours.
               </p>
               <div className="success-details-list">
+                <span>TAKEOFF REF: #{takeoffRef}</span>
+                <span>·</span>
                 <span>STRUCTURE: {buildingType.toUpperCase().replace('-', ' ')}</span>
                 <span>·</span>
                 <span>SCOPE: {projectScope.toUpperCase().replace('-', ' ')}</span>
                 <span>·</span>
                 <span>METALS: 100% SOLDERED COPPER &amp; VMZINC</span>
               </div>
-              <button 
-                type="button" 
-                onClick={() => setFormSubmitted(false)}
-                className="roof-btn-secondary"
-                style={{ marginTop: '1.5rem' }}
-              >
-                SUBMIT ANOTHER DRAWING SET
-              </button>
+              <div style={{ marginTop: '1.25rem', display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                <a 
+                  href={`mailto:takeoffs@strataroofing.com?subject=Slate%20Takeoff%20%23${takeoffRef}&body=Client%3A%20${encodeURIComponent(clientName)}%0ALocation%3A%20${encodeURIComponent(projectLocation)}%0AStructure%3A%20${buildingType}%0AScope%3A%20${projectScope}%0ARoof%20Squares%3A%20${roofSquares}%20SQ%0APitch%3A%20${pitchRise}%2F12%0ASlate%20Grade%3A%20${currentGrade.grade}%0ACombined%20Rafter%20Load%3A%20${combinedRafterPsf}%20PSF`}
+                  className="roof-btn-primary"
+                >
+                  EMAIL TAKEOFF TO MASTER SLATER
+                </a>
+                <button 
+                  type="button" 
+                  onClick={() => setFormSubmitted(false)}
+                  className="roof-btn-secondary"
+                >
+                  SUBMIT ANOTHER DRAWING SET
+                </button>
+              </div>
             </div>
           ) : (
             <form onSubmit={handleFormSubmit} className="roof-intake-form">
